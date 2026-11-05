@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Financing — Green Thumb Depot</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="financing-v1.css">
+    <style>
+        :root {
+            --forest: #172E26;
+            --cream: #F2F1EC;
+            --lime: #D9F36B;
+            --offwhite: #FFFFF8;
+            --sage: #E0E8D8;
+            --gray: #4D4D4D;
+            --ink: #111;
+            --text: #f4f1ea;
+            --gold: #DEA508;
+            --gold-soft: #E7C568;
+            --logo: #7CC142;
+            --bg: var(--cream);
+            --card: var(--offwhite);
+            --fg: var(--ink);
+            --mut: var(--gray);
+            --line: rgba(23, 46, 38, .14);
+            --soft: var(--sage);
+            --accent: var(--forest);
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                color-scheme: dark;
+                --bg: #0f1f19;
+                --card: #172E26;
+                --fg: #f4f1ea;
+                --mut: #b9c4bb;
+                --line: rgba(244, 241, 234, .14);
+                --soft: #1f3a30;
+                --accent: var(--lime)
+            }
+        }
+
+        :root[data-theme="dark"] {
+            color-scheme: dark;
+            --bg: #0f1f19;
+            --card: #172E26;
+            --fg: #f4f1ea;
+            --mut: #b9c4bb;
+            --line: rgba(244, 241, 234, .14);
+            --soft: #1f3a30;
+            --accent: var(--lime)
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--fg);
+            font: 16px/1.6 Inter, system-ui, sans-serif
+        }
+
+        .serif {
+            font-family: 'Inter';
+            font-weight: 500
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 22px
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            font-weight: 600
+        }
+
+        /* hero */
+        .hero {
+            background: var(--forest);
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+            padding: 84px 0 120px
+        }
+
+        .hero:before,
+        .hero:after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none
+        }
+
+        .hero:before {
+            width: 520px;
+            height: 520px;
+            right: -140px;
+            top: -180px;
+            /* background: radial-gradient(circle, rgba(217, 243, 107, .35), transparent 65%); */
+            background: none;
+        }
+
+        .hero:after {
+            width: 380px;
+            height: 380px;
+            left: -120px;
+            bottom: -200px;
+            /* border: 1px solid rgba(217, 243, 107, .25); */
+            border: none;
+            /* box-shadow: 0 0 0 40px rgba(217, 243, 107, .04), 0 0 0 90px rgba(217, 243, 107, .03); */
+            box-shadow: none;
+        }
+
+        .hero .eyebrow {
+            color: var(--lime)
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 84px);
+            line-height: 1.02;
+            margin: 16px 0 18px;
+            letter-spacing: -.02em
+        }
+
+        .hero h1 em {
+            color: var(--lime)
+        }
+
+        .hero p {
+            max-width: 560px;
+            color: rgba(244, 241, 234, .78);
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px
+        }
+
+        .chip {
+            border: 1px solid rgba(244, 241, 234, .25);
+            border-radius: 99px;
+            padding: 8px 16px;
+            font-size: 14px;
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .chip b {
+            color: var(--gold-soft)
+        }
+
+        .btn {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            background: var(--lime);
+            color: var(--forest);
+            font-weight: 700;
+            border-radius: 99px;
+            padding: 13px 24px;
+            text-decoration: none;
+            margin-top: 26px;
+            transition: .2s
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(217, 243, 107, .3)
+        }
+
+        /* glance */
+        .glance {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin-top: -72px;
+            position: relative;
+            z-index: 2
+        }
+
+        .g {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: left;
+            font: inherit;
+            color: var(--fg);
+            transition: .25s;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, .12)
+        }
+
+        .g:hover {
+            transform: translateY(-6px)
+        }
+
+        .g small {
+            color: var(--mut);
+            display: block;
+            font-size: 12px;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        .g strong {
+            display: block;
+            font-family: 'Inter';
+            font-size: 21px;
+            line-height: 1.2;
+            margin-top: 8px
+        }
+
+        .g i {
+            display: block;
+            height: 4px;
+            width: 34px;
+            border-radius: 4px;
+            background: var(--logo);
+            margin-top: 14px
+        }
+
+        .g.on {
+            background: var(--forest);
+            color: var(--text)
+        }
+
+        .g.on small {
+            color: var(--gold-soft)
+        }
+
+        .g.on i {
+            background: var(--lime);
+            width: 60px
+        }
+
+        /* tabs */
+        .tabsbar {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 20;
+            background: var(--forest);
+            margin-top: 56px;
+            border-bottom: 1px solid var(--line);
+            border-radius: 40px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 14px 0;
+            scrollbar-width: none;
+            justify-content: center;
+        }
+
+        .tab {
+            flex: none;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--fg);
+            font: 600 15px Inter, sans-serif;
+            padding: 11px 22px;
+            border-radius: 99px;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .tab:hover {
+            background: var(--soft)
+        }
+
+        .tab.on {
+            background: var(--forest);
+            color: var(--lime);
+            border-color: var(--forest)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) .tab.on {
+                background: var(--lime);
+                color: var(--forest)
+            }
+        }
+
+        /* panel */
+        .panel {
+            padding: 56px 0 20px;
+            animation: in .5s
+        }
+
+        @keyframes in {
+            from {
+                opacity: 0;
+                transform: translateY(14px)
+            }
+        }
+
+        .top {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 44px;
+            align-items: center
+        }
+
+        .ph {
+            border-radius: 26px;
+            overflow: hidden;
+            background: transparent;
+            /* background: var(--soft); */
+            aspect-ratio: 11;
+            display: grid;
+            place-items: center;
+            position: relative;
+            border: 1px solid var(--line)
+        }
+
+        .ph img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .ph.shot {
+            aspect-ratio: auto;
+            min-height: 100px;
+            padding: 0px;
+            /* padding: 18px; */
+            background: transparent;
+            /* background: linear-gradient(135deg, var(--soft), var(--card)) */
+        }
+
+        .ph.shot img {
+            object-fit: contain;
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, .18)
+        }
+
+        .ph .fb {
+            font-family: 'Inter';
+            font-size: 26px;
+            color: var(--accent);
+            text-align: center;
+            padding: 20px
+        }
+
+        .num {
+            color: var(--forest);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: .14em
+        }
+
+        h2 {
+            font-family: 'Inter';
+            font-weight: 500;
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.08;
+            margin: 8px 0 14px;
+            letter-spacing: -.015em;
+            color: var(--forest);
+        }
+
+        h2 em {
+            color: var(--gold)
+        }
+
+        .lead {
+            color: var(--forest);
+            font-size: 17px
+        }
+
+        .sec {
+            margin-top: 70px
+        }
+
+        .why {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 26px
+        }
+
+        .w {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 24px;
+            transition: .25s
+        }
+
+        .w:hover {
+            border-color: var(--logo);
+            transform: translateY(-4px)
+        }
+
+        .w .ic {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: var(--lime);
+            color: var(--forest);
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            margin-bottom: 14px
+        }
+
+        .w b {
+            display: block;
+            margin-bottom: 4px
+        }
+
+        .w span {
+            color: var(--mut);
+            font-size: 15px
+        }
+
+        .how {
+            /* display: grid;
+            grid-template-columns: 1fr 1fr; */
+            display: flex;
+            flex-direction: column;
+            gap: 44px;
+            align-items: center;
+            background: var(--forest);
+            color: var(--text);
+            border-radius: 30px;
+            padding: 44px;
+            margin-top: 70px
+        }
+
+        .how h2 {
+            color: var(--text)
+        }
+
+        .how h2 em {
+            color: var(--lime)
+        }
+
+        .how .num {
+            color: var(--lime)
+        }
+
+        .how p {
+            color: rgba(244, 241, 234, .8)
+        }
+
+        .how .ph {
+            /* background: rgba(255, 255, 248, .06);    
+            border-color: rgba(255, 255, 248, .18) */
+            border: none;
+            background: transparent;
+        }
+
+        .how .fb {
+            color: var(--lime)
+        }
+
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 14px;
+            margin-top: 26px
+        }
+
+        .s {
+            border: 1px solid var(--line);
+            background: var(--card);
+            border-radius: 18px;
+            padding: 20px;
+            position: relative
+        }
+
+        .s small {
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700
+        }
+
+        .s p {
+            margin-top: 6px;
+            font-weight: 500;
+            line-height: 1.45
+        }
+
+        .help {
+            margin-top: 22px;
+            background: var(--soft);
+            border-radius: 18px;
+            padding: 18px 22px;
+            font-size: 15px
+        }
+
+        .help a {
+            color: var(--accent);
+            font-weight: 600
+        }
+
+        .faq {
+            margin-top: 24px;
+            display: grid;
+            gap: 10px;
+            /* max-width: 860px */
+            max-width: 1100px;
+        }
+
+        .q {
+            border: 1px solid var(--line);
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden
+        }
+
+        .q button {
+            all: unset;
+            box-sizing: border-box;
+            cursor: pointer;
+            width: 100%;
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            font-weight: 600
+        }
+
+        .q button:focus-visible {
+            outline: 2px solid var(--logo);
+            outline-offset: -2px
+        }
+
+        .q button:after {
+            content: "+";
+            font-size: 22px;
+            line-height: 1;
+            color: var(--logo);
+            transition: .25s
+        }
+
+        .q.open button:after {
+            transform: rotate(45deg)
+        }
+
+        .q div {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s;
+            color: var(--mut)
+        }
+
+        .q div p {
+            padding: 0 22px 18px
+        }
+
+        /* cta + foot */
+        .cta {
+            margin: 90px 0 0;
+            background: var(--forest);
+            color: var(--text);
+            padding: 70px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta:before {
+            content: "";
+            position: absolute;
+            inset: auto -10% -60% -10%;
+            height: 100%;
+            background: none;
+            /* background: radial-gradient(ellipse, rgba(124, 193, 66, .35), transparent 65%); */
+        }
+
+        .cta .wrap {
+            position: relative
+        }
+
+        .cta .eyebrow {
+            color: var(--gold-soft)
+        }
+
+        .cta h2 {
+            color: var(--text)
+        }
+
+        .cta h2 em {
+            color: var(--lime)
+        }
+
+        .foot {
+            background: var(--ink);
+            color: #aaa;
+            text-align: center;
+            padding: 22px;
+            font-size: 13px
+        }
+
+        @media(max-width:900px) {
+            .glance {
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: -60px
+            }
+
+            .glance .g:last-child {
+                grid-column: span 2
+            }
+
+            .top,
+            .how {
+                grid-template-columns: 1fr
+            }
+
+            .how {
+                padding: 26px
+            }
+
+            .hero {
+                padding: 60px 0 100px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+        }
+    </style>
+
+</head>
+
+<body class="v1">
+
+    <body>
+        <header class="hero">
+            <div class="wrap" style="justify-content: center;align-items: center;display: flex;flex-direction: column;">
+                <div class="eyebrow">Flexible ways to pay</div>
+                <h1 class="serif">Financing, <em>made easy.</em></h1>
+                <p>Big grow upgrades shouldn’t mean big stress. Choose the payment plan that fits your budget and
+                    lifestyle, right at checkout.</p>
+                <div class="chips"><span class="chip"><b>0%</b> interest options</span><span class="chip"><b>Instant</b>
+                        decisions</span><span class="chip"><b>Soft</b> credit checks</span></div>
+                <a class="btn" href="#plans">Compare plans ↓</a>
+            </div>
+        </header>
+
+        <main class="wrap" id="plans">
+            <div class="glance" id="glance"></div>
+            <div class="tabsbar">
+                <div class="tabs" id="tabs" role="tablist"></div>
+            </div>
+            <section class="panel" id="panel"></section>
+        </main>
+
+        <section class="cta">
+            <div class="wrap">
+                <div class="eyebrow">Here to help</div>
+                <h2>Trouble getting <em>financed?</em></h2>
+                <p style="max-width:520px;margin:0 auto;color:rgba(244,241,234,.8)">Give us a call or email us. We’ll
+                    help you find financing for your purchase in any way we can.</p>
+                <a class="btn" href="tel:18334160375">Call or text (833) 416-0375 ↗</a>
+                <p style="margin-top:16px;font-size:14px"><a style="color:var(--lime)"
+                        href="mailto:info@greenthumbdepot.com">info@greenthumbdepot.com</a></p>
+            </div>
+        </section>
+        <!-- <footer class="foot">© 2026 Green Thumb Depot. All rights reserved. · Mon–Fri 9am–5pm (CST)</footer> -->
+
+        <script>
+
+            var F = "https://cdn.shopify.com/s/files/1/0694/0151/0171/files/";
+            var P = [
+                {
+                    id: "paytomorrow", name: "PayTomorrow", stat: "Up to 48 months", banner: "GTD_x_PayTomorrow.png?v=1740116164", shot: "paytomorrow-checkout.png?v=1714455941",
+                    intro: "Buying great products is a big decision. That’s why we partner with PayTomorrow to give you easy payment choices. Pick PayTomorrow at checkout for a smooth experience with plans that work for your budget and lifestyle.",
+                    why: [["Straightforward Pricing", "Transparent terms. No prepayment penalties."], ["Quick and Simple", "A few pieces of information and you get a decision in seconds."], ["Automatic Payments", "Paid on your due date, with flexibility to change it if needed."], ["Not a Credit Card", "Always know how much you’ll pay. Easy installments, no surprises."]],
+                    how: "At checkout, enter some basic application information, choose a program that works best for you, and you’re set in seconds. Applying has no effect on your credit.",
+                    specs: [["Payment Schedule", "Up to 48 months for Prime; up to 24 months for Classic; 13 months for No Credit."], ["Payment Term", "48 months (Prime), 24 months (Classic), 13 months (No Credit)."], ["Interest and Fees", "0.0%–20.9% APR for Prime; 90 days same as cash for No Credit."], ["Financing", "Up to $10,000 (Prime), $6,500 (Classic), $5,000 (No Credit)."], ["Soft Credit Check?", "Yes."], ["Lease-to-Own Option", "Yes, for the No Credit option."], ["Payment Methods", "Electronic payment method."]],
+                    faq: [["How do I apply for PayTomorrow financing?", "Choose PayTomorrow at checkout and fill out a short application. You’ll get an instant decision."], ["What are the requirements to qualify?", "You must be at least 18, have a valid social security or ITIN number, and possess a credit or debit card."], ["Can I use PayTomorrow for any purchase?", "It works for a wide range of products. Check the payment options at checkout to see if your purchase qualifies."], ["What are the interest rates and fees?", "They vary based on your credit profile and the terms you select. You’ll see the details before you accept."], ["What if I have trouble making a payment?", "Contact us immediately to explore possible arrangements or adjustments to your plan."], ["Can I cancel a purchase?", "Yes, according to our return policy. Your loan balance is adjusted or cancelled once the return is processed."]]
+                },
+                {
+                    id: "klarna", name: "Klarna", stat: "Pay in 4 · 0% interest", banner: "GTD_x_Klarna_4.png?v=1740117089", shot: "klarna-checkout.png?v=1714455941",
+                    intro: "Investing in high-quality products can be a big decision. We’ve partnered with Klarna to offer flexible payment options for a smooth and easy purchasing experience.",
+                    why: [["Pay Later", "Pay within 30 days or in 4 interest-free installments."], ["Instant Approval", "No long forms. Get an instant decision."], ["Safe & Secure", "Modern safeguards protect your information."]],
+                    how: "At checkout, select Klarna as your payment option and follow the easy instructions. The snapshot shows what to look for.",
+                    specs: [["Payment Schedule", "Pay in 4, Pay in 30 days, Pay Now, 6–24 months financing."], ["Payment Term", "Immediate, 30 days, bi-weekly, up to 24 months."], ["Interest and Fees", "Pay in 4 and Pay in 30 days: 0% interest."], ["Financing", "7.99%–33.99% APR. Late fees up to $7."], ["Soft Credit Check?", "Yes, for Pay in 4 and monthly financing."], ["Payment Methods", "Debit cards, credit cards, bank accounts."], ["Finance up to", "Designed for purchases up to $10,000."]],
+                    faq: [["How do I use Klarna?", "Select Klarna as your payment option at checkout and follow the easy instructions."], ["Is it safe to use Klarna?", "Klarna is trusted by millions worldwide and uses modern security measures to protect your information."], ["Will Klarna affect my credit score?", "Klarna may perform a soft credit check, which doesn’t affect your credit score."], ["What if I return my order?", "Klarna will issue a refund and cancel any future payments."]]
+                },
+                {
+                    id: "shoppay", name: "ShopPay", stat: "Up to $20,000", banner: "GTD_x_ShopPay_20f39a61-55d3-4522-93c1-7b9a1b99da02.png?v=1740116163", shot: "shoppay-checkout.png?v=1714455942",
+                    intro: "Buying quality products is a big decision, which is why we offer ShopPay. It makes your purchase easy and flexible, suiting your budget and lifestyle.",
+                    why: [["Buy Now, Pay Later", "Purchase immediately and pay over time, transparently."], ["Simplified Checkout", "A fast, secure checkout that saves you time."], ["Flexible Payments", "Choose how and when you pay."], ["Enhanced Security", "Your payment and personal details stay protected."]],
+                    how: "Just choose ShopPay as your payment method at checkout and follow the straightforward steps provided.",
+                    specs: [["Payment Schedule", "4 payments every 2 weeks; monthly for orders $150–$17,500."], ["Payment Term", "Bi-weekly or 3–24 months."], ["Interest and Fees", "0% for bi-weekly; 10%–36% APR for monthly."], ["Soft Credit Check?", "No impact on credit score for applying."], ["Payment Methods", "Debit and credit cards."], ["Finance up to", "$50–$20,000."]],
+                    faq: [["How do I use ShopPay at checkout?", "Select ShopPay, log into your account, and confirm your payment details."], ["Can I use ShopPay for any purchase?", "It works for a variety of products at participating retailers. Look for the ShopPay option at checkout."], ["How secure is ShopPay?", "It uses advanced encryption and security measures to protect your information."], ["Can I return items bought with ShopPay?", "Yes, subject to our return policy. Refunds go back to your original payment method."], ["What are the benefits?", "Accelerated checkout, secure payment processing, and flexible options like pay later or installments."]]
+                },
+                {
+                    id: "afterpay", name: "Afterpay", stat: "4 payments · 6 weeks", banner: "GTD_x_Afterpay.png?v=1738658232", shot: "Screenshot_2025-02-04_130605.png?v=1738657803",
+                    intro: "A flexible, convenient way to shop now and pay later. Afterpay makes your purchase easy, interest-free, and manageable.",
+                    why: [["Buy Now, Pay Later", "Split your payment into four installments over six weeks."], ["Always Interest-Free", "No hidden fees or interest when paid on time."], ["Quick & Secure Checkout", "Fast and hassle-free, online or in-store."], ["Stay in Control", "Track spending and reschedule due dates in the app."]],
+                    how: "Choose Afterpay as your payment method at checkout and follow the straightforward steps provided.",
+                    specs: [["Payment Schedule", "Pay in 4: first payment upfront, the rest over six weeks."], ["Payment Term", "6 weeks total (4 equal payments every 2 weeks)."], ["Interest and Fees", "0% interest when payments are made on time."], ["Financing", "Eligible purchases at thousands of brands, online and in-store."], ["Soft Credit Check?", "No impact on credit score."], ["Payment Methods", "In-store via Afterpay Card (Apple & Google Wallet)."], ["Additional Benefits", "Track payments, reschedule dates, get personalized recommendations."]],
+                    faq: [["What happens if I miss a payment?", "Afterpay may charge a late fee and pause future purchases. Late fees are capped."], ["Can I return items bought with Afterpay?", "Yes, per our return policy. Afterpay refunds and adjusts your schedule."], ["What payment methods are accepted?", "Debit and credit cards, plus the Afterpay Card in Apple or Google Wallet in-store."], ["How do I track my payments?", "Track, update payment methods, and reschedule due dates in the Afterpay app."], ["Can I use Afterpay for any purchase?", "It’s available for eligible purchases; some restrictions may apply by store or category."]]
+                },
+                {
+                    id: "sezzle", name: "Sezzle", stat: "Pay in 4, 2 or monthly", banner: "GTD_x_Sezzle.png?v=1739972707", shot: "Sezzle.png?v=1739971926",
+                    intro: "Shop stress-free by splitting your payments into manageable installments. Sezzle is a flexible, interest-free way to buy what you need now and pay over time.",
+                    why: [["Flexible Plans", "Pay in 4, Pay in 2, or Pay Monthly for larger purchases."], ["Always Interest-Free", "No hidden fees or interest when paid on time."], ["Quick Checkout", "Smooth and secure, online or in-store."], ["Full Control", "Track spending and reschedule payments in the app."]],
+                    how: "Select Sezzle at checkout after adding your items to your cart, then follow the on-screen steps to complete your order.",
+                    specs: [["Payment Schedule", "Pay in 4: initial payment at checkout, then three equal installments every two weeks."], ["Payment Term", "Six weeks with four equal biweekly payments."], ["Interest and Fees", "0% interest when payments are made on time."], ["Financing", "Eligible purchases online and in physical stores."], ["Soft Credit Check?", "No effect on credit for Pay in 4 and Pay in 2."], ["Payment Methods", "In-store with the Sezzle Virtual Card (Apple & Google Wallet)."], ["Additional Benefits", "Adjust due dates, get recommendations, use Sezzle Anywhere."]],
+                    faq: [["What happens if I miss a payment?", "Sezzle may apply a late fee and temporarily disable new purchases. Reschedule in the app to avoid fees."], ["Can I return an item paid with Sezzle?", "Yes, per our policy. Sezzle refunds and updates your remaining payments."], ["What payment methods are accepted?", "Most debit and credit cards, plus the Sezzle Virtual Card in-store."], ["How do I keep track of payments?", "Use the Sezzle app to monitor payments, change methods, and reschedule due dates."], ["Where can I use Sezzle?", "At thousands of retailers, and anywhere Visa is accepted with Sezzle Anywhere."]]
+                }
+            ];
+            var cur = "paytomorrow";
+            function render() {
+                var p = P.filter(function (x) { return x.id === cur })[0];
+                document.getElementById("glance").innerHTML = P.map(function (x) { return '<button class="g' + (x.id === cur ? " on" : "") + '" data-id="' + x.id + '"><small>' + x.name + '</small><strong>' + x.stat + '</strong><i></i></button>' }).join("");
+                document.getElementById("tabs").innerHTML = P.map(function (x) { return '<button role="tab" class="tab' + (x.id === cur ? " on" : "") + '" aria-selected="' + (x.id === cur) + '" data-id="' + x.id + '">' + x.name + '</button>' }).join("");
+                var fb = "onerror=\"this.parentNode.innerHTML='<div class=fb>";
+                document.getElementById("panel").innerHTML =
+                    '<div class="top"><div><div class="num">01 / ' + p.name.toUpperCase() + '</div><h2>Why <em>' + p.name + '?</em></h2><p class="lead">' + p.intro + '</p></div>' +
+                    '<div class="ph"><img src="' + F + p.banner + '" alt="Green Thumb Depot x ' + p.name + '" ' + fb + 'GTD × ' + p.name + '</div>\'"></div></div>' +
+                    '<div class="why">' + p.why.map(function (w, i) { return '<div class="w"><div class="ic">' + (i + 1) + '</div><b>' + w[0] + '</b><span>' + w[1] + '</span></div>' }).join("") + '</div>' +
+                    '<div class="how"><div style="width:100%"><div class="num">02 / HOW IT WORKS</div><h2>How to pay with <em>' + p.name + '</em></h2><p>' + p.how + '</p><p style="margin-top:14px;font-weight:600;color:var(--lime)">Select on the checkout screen after clicking add to cart →</p></div>' +
+                    '<div class="ph shot"><img src="' + F + p.shot + '" alt="' + p.name + ' checkout" ' + fb + p.name + ' at checkout</div>\'"></div></div></div>' +
+                    '<div class="sec"><div class="num">03 / THE DETAILS</div><h2>Plan details, <em>at a glance.</em></h2><div class="specs">' + p.specs.map(function (s) { return '<div class="s"><small>' + s[0] + '</small><p>' + s[1] + '</p></div>' }).join("") + '</div>' +
+                    '<div class="help">Trouble getting financed? Call <a href="tel:18334160375">(833) 416-0375</a> or email <a href="mailto:info@greenthumbdepot.com">info@greenthumbdepot.com</a>. We’re here to help.</div></div>' +
+                    '<div class="sec"><div class="num">04 / FAQ</div><h2>Good questions. <em>Clear answers.</em></h2><div class="faq">' + p.faq.map(function (f) { return '<div class="q"><button aria-expanded="false">' + f[0] + '</button><div><p>' + f[1] + '</p></div></div>' }).join("") + '</div></div>';
+            }
+            function go(id, scroll) { cur = id; render(); try { history.replaceState(null, "", "#" + id) } catch (e) { } if (scroll) document.getElementById("tabs").scrollIntoView({ behavior: "smooth", block: "start" }) }
+            document.addEventListener("click", function (e) {
+                var t = e.target.closest("[data-id]"); if (t) { go(t.dataset.id, t.classList.contains("g")); return }
+                var b = e.target.closest(".q button"); if (b) { var q = b.parentNode, o = !q.classList.contains("open"); q.classList.toggle("open", o); b.setAttribute("aria-expanded", o); var d = q.querySelector("div"); d.style.maxHeight = o ? d.scrollHeight + "px" : 0 }
+            });
+            var h = (location.hash || "").slice(1); if (P.some(function (x) { return x.id === h })) cur = h;
+            render();
+
+        </script>
+    </body>
+
+</html>
