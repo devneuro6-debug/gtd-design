@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Contact Us — Green Thumb Depot</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --forest: #172E26;
+            --cream: #F2F1EC;
+            --lime: #D9F36B;
+            --offwhite: #FFFFF8;
+            --sage: #E0E8D8;
+            --gray: #4D4D4D;
+            --ink: #111111;
+            --text: #f4f1ea;
+            --gold: #DEA508;
+            --gold-soft: #E7C568;
+            --logo: #7CC142;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0
+        }
+
+        [hidden] {
+            display: none !important
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px);
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font: 16px/1.6 'Inter'
+        }
+
+        h1,
+        h2 {
+            font-family: 'Inter';
+            font-weight: 500
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 22px
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            font-weight: 700
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 84px 0 140px
+        }
+
+        /* Shared leaf styles */
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top right leaf */
+        .hero::before {
+            top: 0;
+            right: 0;
+            background-image: url("https://cdn.shopify.com/s/files/1/0694/0151/0171/files/leaves-layover-right.png?v=1791552546");
+            background-position: top right;
+        }
+
+        /* Bottom left leaf (no rotation: your image is already the bottom-left version) */
+        .hero::after {
+            bottom: 0;
+            left: 0;
+            background-image: url("https://cdn.shopify.com/s/files/1/0694/0151/0171/files/leaves-layover-bottom-left.png?v=1791897711");
+            background-position: bottom left;
+        }
+
+        /* Keep hero content above the leaves */
+        .hero>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Smaller leaves on mobile */
+        @media (max-width: 768px) {
+
+            .hero::before,
+            .hero::after {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        h1 {
+            font-size: clamp(46px, 8vw, 92px);
+            line-height: 1;
+            letter-spacing: -.025em;
+            margin: 16px 0 18px
+        }
+
+        .hero p {
+            max-width: 640px;
+            font-size: 18px;
+            position: relative
+        }
+
+        .hero .wrap {
+            position: relative;
+            z-index: 1
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px
+        }
+
+        .chip {
+            border-radius: 99px;
+            padding: 8px 16px;
+            font-size: 14px;
+            display: inline-flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 22px;
+            margin-top: 50px;
+            position: relative;
+            /* z-index: 2; */
+            padding-bottom: 70px
+        }
+
+        .info {
+            display: grid;
+            gap: 14px;
+            align-content: start
+        }
+
+        .ci {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding: 20px 22px;
+            text-decoration: none;
+            color: inherit;
+            transition: .25s
+        }
+
+        .ci:hover {
+            transform: translateY(-4px)
+        }
+
+        .ic {
+            width: 50px;
+            height: 50px;
+            flex: none;
+            border-radius: 15px;
+            display: grid;
+            place-items: center
+        }
+
+        .ic svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: #f1f9cf;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .ci small {
+            display: block;
+            font: 700 11px 'Inter';
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            opacity: .7
+        }
+
+        .ci b {
+            display: block;
+            font-size: 17px;
+            line-height: 1.35;
+            word-break: break-word
+        }
+
+        .formcard {
+            padding: 36px
+        }
+
+        .formcard h2 {
+            font-size: clamp(28px, 3.4vw, 40px);
+            line-height: 1.1;
+            margin: 6px 0 10px;
+            letter-spacing: -.015em
+        }
+
+        .consent {
+            font-size: 13px;
+            opacity: .75;
+            margin-bottom: 22px
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .f {
+            display: grid;
+            gap: 6px
+        }
+
+        .f.full {
+            grid-column: 1/-1
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600
+        }
+
+        input,
+        textarea {
+            font: inherit;
+            color: inherit;
+            padding: 14px 16px;
+            width: 100%;
+            background: var(--inbg);
+            border: 1.5px solid var(--inline);
+            border-radius: 12px;
+            transition: .2s
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--logo);
+            box-shadow: 0 0 0 4px rgba(124, 193, 66, .25)
+        }
+
+        .send {
+            font: 700 16px 'Inter';
+            cursor: pointer;
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 28px;
+            border-radius: 99px;
+            border: 0;
+            transition: .2s;
+            grid-column: 1/-1;
+            justify-self: start
+        }
+
+        .send:hover {
+            transform: translateY(-2px)
+        }
+
+        .ok {
+            text-align: center;
+            padding: 40px 10px
+        }
+
+        .ok h2 {
+            margin-bottom: 8px
+        }
+
+        .ok .tick {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--lime);
+            color: var(--forest);
+            display: grid;
+            place-items: center;
+            margin: 0 auto 18px;
+            font-size: 34px;
+            font-weight: 700
+        }
+
+        .ok button {
+            margin-top: 18px;
+            background: none;
+            border: 0;
+            font: 600 15px Inter;
+            color: inherit;
+            text-decoration: underline;
+            cursor: pointer
+        }
+
+        .mapcard {
+            grid-column: 1/-1;
+            position: relative;
+            height: 440px;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            background: #f1f9cf;
+            color: var(--mut)
+        }
+
+        .mapcard iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0
+        }
+
+        .mapcard .fb {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px
+        }
+
+        .pin {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            z-index: 2;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 11px 18px;
+            border-radius: 99px;
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            transition: .2s
+        }
+
+        .pin:hover {
+            transform: translateY(-2px)
+        }
+
+        .foot {
+            text-align: center;
+            padding: 22px;
+            font-size: 13px;
+            background: var(--ink);
+            color: #aaa
+        }
+
+        @media(max-width:900px) {
+            .grid {
+                grid-template-columns: 1fr !important;
+                margin-top: -70px
+            }
+
+            .grid>* {
+                grid-column: auto !important;
+                grid-row: auto !important
+            }
+
+            .formcard {
+                padding: 24px
+            }
+
+            form {
+                grid-template-columns: 1fr
+            }
+
+            .mapcard {
+                height: 340px;
+                min-height: 0 !important
+            }
+
+            .hero {
+                padding: 60px 0 120px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                transition: none !important
+            }
+        }
+
+        :root {
+            --bg: var(--offwhite);
+            --fg: var(--ink);
+            --soft: var(--sage);
+            --mut: var(--gray);
+            --inbg: #fff;
+            --inline: rgba(23, 46, 38, .18)
+        }
+
+        .hero {
+            background: var(--forest);
+            /* background: linear-gradient(160deg, var(--cream), var(--sage)); */
+            color: var(--sage);
+            text-align: center
+        }
+
+        .hero p {
+            margin: 0 auto;
+            color: var(--sage)
+        }
+
+        .chips {
+            justify-content: center
+        }
+
+        /* .hero:before {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            left: 50%;
+            top: -300px;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background: none
+                background: radial-gradient(circle, rgba(217, 243, 107, .95), transparent 65%)
+        } */
+
+        .hero .eyebrow {
+            background: var(--lime);
+            color: var(--forest);
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 99px
+        }
+
+        h1 em {
+            /* background: linear-gradient(transparent 58%, var(--lime) 58%); */
+            color: var(--gold);
+            padding: 0 .08em
+        }
+
+        .chip {
+            background: #264433;
+            border: 1px solid rgba(23, 46, 38, .2)
+        }
+
+        .chip b {
+            color: var(--gold)
+        }
+
+        .grid {
+            grid-template-columns: 1.3fr 1fr
+        }
+
+        .formcard {
+            order: -1;
+            background: #f1f9cf;
+            border: 1px solid rgba(23, 46, 38, .1);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(23, 46, 38, .12)
+        }
+
+        .formcard .eyebrow {
+            color: var(--logo)
+        }
+
+        .formcard h2 em {
+            /* background: linear-gradient(transparent 58%, var(--lime) 58%) */
+            color: var(--gold);
+        }
+
+        /* Aside no longer sticky/moving */
+        .info {
+            position: static;
+        }
+
+        /* Aside intro block */
+        .info .eyebrow {
+            color: var(--logo);
+        }
+
+        .info h2 {
+            font-size: clamp(28px, 3.4vw, 40px);
+            line-height: 1.1;
+            letter-spacing: -.015em;
+            color: var(--forest);
+            margin: 0;
+        }
+
+        .info>p {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .info>p strong {
+            color: var(--forest);
+            font-weight: 600;
+        }
+
+        .ci {
+            background: var(--forest);
+            border: 1px solid rgba(23, 46, 38, .1);
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(23, 46, 38, .08);
+            color: var(--cream)
+        }
+
+        .ci:hover {
+            box-shadow: 0 14px 34px rgba(124, 193, 66, .3);
+            border-color: var(--lime)
+        }
+
+        .ic {
+            background: #1f5b34;
+            color: var(--forest)
+        }
+
+        .ci:hover .ic {
+            background: var(--bg)
+        }
+
+        .ci:hover .ic svg {
+            color: #172E26;
+            stroke: #172E26;
+        }
+
+        .send {
+            background: var(--forest);
+            color: var(--cream)
+        }
+
+        .send:hover {
+            box-shadow: 0 10px 24px rgba(23, 46, 38, .3)
+        }
+
+        .mapcard {
+            border-radius: 28px;
+            border: 6px solid #fff;
+            box-shadow: 0 20px 50px rgba(23, 46, 38, .15)
+        }
+
+        .pin {
+            background: var(--forest);
+            color: var(--cream)
+        }
+
+        .foot {
+            background: var(--forest)
+        }
+
+        /* Trust bar */
+        .trust {
+            position: relative;
+            z-index: 2;
+            margin-top: -50px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 20px;
+            background: #f1f9cf;
+            border: 1px solid rgba(23, 46, 38, .1);
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(23, 46, 38, .08);
+        }
+
+        .tr-ic {
+            width: 46px;
+            height: 46px;
+            flex: none;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #1f5b34;
+        }
+
+        .tr-ic svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #f1f9cf;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .trust-item b {
+            display: block;
+            font-size: 15px;
+            line-height: 1.3;
+            color: var(--forest);
+        }
+
+        .trust-item small {
+            display: block;
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.35;
+        }
+
+        @media(max-width:900px) {
+            .formcard {
+                order: 0
+            }
+
+            .info {
+                position: static
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* .grid has margin-top: -70px on mobile, which would overlap the trust bar */
+            .grid {
+                margin-top: 30px !important;
+            }
+        }
+
+        @media(max-width:520px) {
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="mail" viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="14" rx="3" />
+                <path d="m4 7 8 6 8-6" />
+            </symbol>
+            <symbol id="phone" viewBox="0 0 24 24">
+                <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z" />
+            </symbol>
+            <symbol id="pin" viewBox="0 0 24 24">
+                <path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z" />
+                <circle cx="12" cy="10" r="2.5" />
+            </symbol>
+            <symbol id="lock" viewBox="0 0 24 24">
+                <rect x="5" y="11" width="14" height="9" rx="2" />
+                <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+            </symbol>
+            <symbol id="truck" viewBox="0 0 24 24">
+                <path d="M3 6h11v10H3z" />
+                <path d="M14 10h4l3 3v3h-7z" />
+                <circle cx="7.5" cy="17.5" r="1.8" />
+                <circle cx="17.5" cy="17.5" r="1.8" />
+            </symbol>
+            <symbol id="return" viewBox="0 0 24 24">
+                <path d="M9 14 4 9l5-5" />
+                <path d="M4 9h10a6 6 0 0 1 0 12h-3" />
+            </symbol>
+            <symbol id="leaf" viewBox="0 0 24 24">
+                <path d="M5 19c0-9 5-14 15-14 0 10-5 15-14 15" />
+                <path d="M5 19c3-5 6-8 10-10" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <section class="hero">
+        <div class="wrap">
+            <div class="eyebrow">We’d love to have a chat</div>
+            <h1>Contact <em>us.</em></h1>
+            <p>Thanks for being with us here at Green Thumb Depot. If you need assistance with anything at all, please
+                don’t hesitate to get in touch using any of the contact methods below. You can even fill out the form on
+                this page. We usually respond within 24 hours.</p>
+            <div class="chips"><span class="chip"><b>24h</b> typical response</span><span class="chip"><b>Mon–Fri</b>
+                    9am–5pm CST</span><span class="chip"><b>Call or text</b> anytime</span></div>
+        </div>
+    </section>
+
+    <section class="trust" aria-label="Why shop with us">
+        <div class="wrap trust-grid">
+            <div class="trust-item">
+                <span class="tr-ic"><svg>
+                        <use href="#lock" />
+                    </svg></span>
+                <span><b>Secure checkout</b><small>Your data stays protected</small></span>
+            </div>
+            <div class="trust-item">
+                <span class="tr-ic"><svg>
+                        <use href="#truck" />
+                    </svg></span>
+                <span><b>Fast shipping</b><small>Carefully packed orders</small></span>
+            </div>
+            <div class="trust-item">
+                <span class="tr-ic"><svg>
+                        <use href="#return" />
+                    </svg></span>
+                <span><b>Easy returns</b><small>Hassle-free support</small></span>
+            </div>
+            <div class="trust-item">
+                <span class="tr-ic"><svg>
+                        <use href="#leaf" />
+                    </svg></span>
+                <span><b>Healthy plants</b><small>Quality you can count on</small></span>
+            </div>
+        </div>
+    </section>
+
+    <main class="wrap grid">
+        <aside class="info">
+            <span class="eyebrow">GET IN TOUCH</span>
+            <h2>Contact Information</h2>
+            <p>Thank you for choosing Green Thumb Depot! We're here to help with any questions you may have about our
+                products, orders, or services. Feel free to reach out using any of the contact methods below or simply
+                fill out the form on this page. Our team typically responds within 24 hours. We look forward to hearing
+                from you!<br><br>
+                By contacting us, you consent to receive follow-up communications from Green Thumb Depot via text
+                message at <strong>(833) 416-0375</strong> or email at <strong>info@greenthumbdepot.com</strong>.</p>
+            <a class="ci" href="mailto:info@greenthumbdepot.com"><span class="ic"><svg>
+                        <use href="#mail" />
+                    </svg></span><span><small>Email</small><b>info@greenthumbdepot.com</b></span></a>
+            <a class="ci" href="tel:+18334160375"><span class="ic"><svg>
+                        <use href="#phone" />
+                    </svg></span><span><small>Call or text</small><b>+1 (833) 416-0375</b></span></a>
+            <a class="ci" href="https://www.google.com/maps/search/?api=1&query=191+Rainbow+Drive+Livingston+TX+77399"
+                target="_blank" rel="noopener"><span class="ic"><svg>
+                        <use href="#pin" />
+                    </svg></span><span><small>Address</small><b>191 Rainbow Drive #9130<br>Livingston, TX
+                        77399-1091</b></span></a>
+        </aside>
+        <section class="formcard">
+            <div id="formwrap">
+                <div class="eyebrow">Drop us a line</div>
+                <h2>Send us a <em>message.</em></h2>
+                <p class="consent">By submitting your phone number below, you are consenting to receive text messages
+                    from us. You can opt out at any time by texting “STOP.”</p>
+                <form id="cf" method="post" action="/contact#contact_form" accept-charset="UTF-8"><input type="hidden"
+                        name="form_type" value="contact"><input type="hidden" name="utf8" value="✓">
+                    <div class="f"><label for="n">Name*</label><input id="n" name="contact[name]" required
+                            autocomplete="name"></div>
+                    <div class="f"><label for="e">Email*</label><input id="e" type="email" name="contact[email]"
+                            required autocomplete="email"></div>
+                    <div class="f full"><label for="p">Phone Number</label><input id="p" type="tel"
+                            name="contact[phone]" autocomplete="tel"></div>
+                    <div class="f full"><label for="m">Message*</label><textarea id="m" name="contact[body]"
+                            required></textarea></div>
+                    <button class="send" type="submit">Send message <span aria-hidden="true">→</span></button>
+                </form>
+            </div>
+            <div class="ok" id="ok" hidden>
+                <div class="tick">✓</div>
+                <h2>Message sent!</h2>
+                <p>Thanks for reaching out. We usually respond within 24 hours.</p><button type="button" id="again">Send
+                    another</button>
+            </div>
+        </section>
+        <section class="mapcard">
+            <div class="fb">Green Thumb Depot<br>191 Rainbow Drive #9130, Livingston, TX</div>
+            <iframe title="Green Thumb Depot location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3432.6440035688825!2d-94.8731371!3d30.643989!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86388fb356b09de5%3A0xf42f3615ccba232c!2sGreen%20Thumb%20Depot!5e0!3m2!1sen!2sdo!4v1678235983547!5m2!1sen!2sdo"></iframe>
+            <a class="pin" href="https://www.google.com/maps/search/?api=1&query=191+Rainbow+Drive+Livingston+TX+77399"
+                target="_blank" rel="noopener">Open in Google Maps ↗</a>
+        </section>
+    </main>
+    <!-- <footer class="foot">© 2026 Green Thumb Depot. All rights reserved. · Mon–Fri 9am–5pm (CST)</footer> -->
+    <script>
+        var f = document.getElementById("cf"), ok = document.getElementById("ok"), w = document.getElementById("formwrap");
+        f.addEventListener("submit", function (e) { if (/greenthumbdepot\.com|myshopify\.com/.test(location.hostname)) return; e.preventDefault(); w.hidden = true; ok.hidden = false });
+        document.getElementById("again").onclick = function () { f.reset(); ok.hidden = true; w.hidden = false };
+    </script>
+</body>
+
+</html>
